@@ -1,0 +1,40 @@
+# Terraform
+.terraform/
+
+# Node
+*.log
+node_modules/
+
+# Other
+.DS_STORE
+*#
+*~
+.terraform
+secrets.json
+.env
+.vscode/
+
+
+# Typescript related files
+app.js
+app.d.ts
+app.js.map
+
+lib/**/*.d.ts
+lib/**/*.js.map
+lib/**/*.js
+fixtures/**/*.js
+fixtures/**/*.js.map
+fixtures/**/*.d.ts
+
+coverage/
+dist/
+
+# IDE
+.idea/
+.vscode/
+
+# npmrc
+.npmrc
+
+.turbo

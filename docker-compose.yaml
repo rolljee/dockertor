@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  api:
+    image: oven/bun
+    command: sh /app/start.sh
+    container_name: api
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./api:/app
+
+  web:
+    image: node:18-alpine
+    container_name: web
+    command: sh /app/start.sh
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./web:/app
