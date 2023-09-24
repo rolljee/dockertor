@@ -8,4 +8,4 @@ if [ ! -d "node_modules" ]; then
 fi
 
 # Run the npm run dev command
-npm run dev
+npm run dev -- --host 

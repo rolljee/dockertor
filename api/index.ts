@@ -9,7 +9,7 @@ Bun.serve({
   },
   async fetch(req) {
     const middleware = new Middleware(req);
-    
+
     return middleware.processUrl();
   },
 });

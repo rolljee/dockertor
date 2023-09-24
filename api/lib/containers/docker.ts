@@ -18,6 +18,6 @@ export class DockerService {
       .map((line) => line.replace(/'/g, ""))
       .map((line) => JSON.parse(line));
 
-    return JSON.stringify(containers);
+    return containers;
   }
 }

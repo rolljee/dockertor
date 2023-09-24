@@ -18,11 +18,14 @@ export class Middleware {
     if (this.url.pathname === "/docker/containers") {
       const containers = await this.dockerService.getContainersInformations();
 
-      return new Response(containers, {
+      const response = Response.json(JSON.stringify(containers), {
         headers: {
           "content-type": "application/json",
+          "Access-Control-Allow-Origin": "*",
         },
       });
+
+      return response;
     }
 
     return new Response("Not found", { status: 404 });
