@@ -15,12 +15,11 @@ export class Middleware {
       return new Response("Hello world!");
     }
 
-    if (this.url.pathname === "/docker/containers") {
+    if (this.url.pathname === "/api/containers") {
       const containers = await this.dockerService.getContainersInformations();
-
-      const response = Response.json(JSON.stringify(containers), {
+      const payload = JSON.stringify(containers);
+      const response = Response.json(payload, {
         headers: {
-          "content-type": "application/json",
           "Access-Control-Allow-Origin": "*",
         },
       });
