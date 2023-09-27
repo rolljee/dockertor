@@ -2,11 +2,12 @@
 
 ## Description
 
-Dockertor is a tool that help you inspect your docker containers and kubernetes pods.
+Dockertor is a tool that help you inspect your docker containers.
+This is an expirimental project to learn how to use bun & Svelte.
 
-## Work in progress
+## What does it look like
 
-This project is under development. There is nothing to show yet.
+![Dockertor](./screenshots/example.png)
 
 ## Usage
 
@@ -19,4 +20,4 @@ docker compose up
 - Bun 1.0.0
 - Svelte
 - Docker
-- Kubernetes
+- tailwindcss
