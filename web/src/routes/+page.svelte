@@ -4,11 +4,11 @@
   import "../app.css";
 
   onMount(() => {
-    fetch("http://localhost:3000/api/containers")
+    const API_URL = import.meta.env.VITE_API_URL;
+    fetch(`${API_URL}/api/containers`)
       .then((res) => res.json())
       .then((data) => {
         const payload = JSON.parse(data);
-        console.log(payload);
         apiData.set(payload);
       })
       .catch((e) => console.error(e));
@@ -20,69 +20,84 @@
     {#each $containers as container}
       <div class="basis-1 p-3 m-3 rounded border">
         <div class="flex flex-row">
-          <div class="rounded border bg-sky-500/50 m-1 p-1">{container.RunningFor}</div>
-          <div class="rounded border bg-sky-500/50 m-1 p-1">{container.State}</div>
-          <div class="rounded border bg-sky-500/50 m-1 p-1">{container.Status}</div>
+          <div class="rounded border bg-sky-500/50 m-1 p-1">
+            {container.RunningFor}
+          </div>
+          <div class="rounded border bg-sky-500/50 m-1 p-1">
+            {container.State}
+          </div>
+          <div class="rounded border bg-sky-500/50 m-1 p-1">
+            {container.Status}
+          </div>
         </div>
 
         <div class="flex flex-row">
-          <div class="mr-1">Image</div>
+          <div class="mr-1"><b>Image</b></div>
           <div>
             <code>{container.Image}</code>
           </div>
         </div>
 
         <div class="flex flex-row">
-          <div class="mr-1">Identifier</div>
+          <div class="mr-1"><b>Identifier</b></div>
           <div>
             {container.ID}
           </div>
         </div>
 
         <div class="flex flex-row">
-          <div class="mr-1">Created At</div>
+          <div class="mr-1"><b>Created</b> At</div>
           <div>
             <code>{container.CreatedAt}</code>
           </div>
         </div>
 
         <div class="flex flex-row">
-          <div class="mr-1">Command</div>
+          <div class="mr-1"><b>Command</b></div>
           <div>
             <code>{container.Command}</code>
           </div>
         </div>
 
         <div class="flex flex-row">
-          <div class="mr-1">Mounts</div>
+          <div class="mr-1"><b>Mounts</b></div>
           <div>
-            <code>{container.Mounts}</code>
+            {#each container.Mounts.split(",") as mount}
+              <div class="flex flex-row">
+                <div class="mr-1">{mount}</div>
+              </div>
+            {/each}
           </div>
         </div>
 
-
         <div class="flex flex-row">
-          <div class="mr-1">Networks</div>
+          <div class="mr-1"><b>Networks</b></div>
           <div>
             <code>{container.Networks}</code>
           </div>
         </div>
 
         <div class="flex flex-row">
-          <div class="mr-1">Ports</div>
+          <div class="mr-1"><b>Ports</b></div>
           <div>
-            <code>{container.Ports}</code>
+            {#each container.Ports.split(",") as port}
+              <div class="flex flex-row">
+                <div class="mr-1">{port}</div>
+              </div>
+            {/each}
           </div>
         </div>
+        
 
         <div class="flex flex-row">
-          <div class="mr-1">Size</div>
+          <div class="mr-1"><b>Size</b></div>
           <div>
             <code>{container.Size}</code>
           </div>
         </div>
+
         <div class="flex flex-row">
-          <div class="mr-1">Labels</div>
+          <div class="mr-1"><b>Labels</b></div>
           <div>
             {#each container.Labels.split(",") as label}
               <div class="flex flex-row">
