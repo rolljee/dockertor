@@ -1,17 +1,17 @@
 {
-  "name": "dockertor",
-  "version": "0.0.0",
-  "private": true,
-  "description": "A tool that helps you inspect your Docker containers.",
-  "scripts": {
-    "release": "semantic-release",
-    "release:dry": "semantic-release --dry-run"
-  },
-  "devDependencies": {
-    "@semantic-release/changelog": "^7.0.0",
-    "@semantic-release/exec": "^7.1.0",
-    "@semantic-release/git": "^11.0.0",
-    "@semantic-release/github": "^12.0.9",
-    "semantic-release": "^25.0.8"
-  }
+	"name": "dockertor",
+	"version": "1.0.0-beta.1",
+	"private": true,
+	"description": "A tool that helps you inspect your Docker containers.",
+	"scripts": {
+		"release": "semantic-release",
+		"release:dry": "semantic-release --dry-run"
+	},
+	"devDependencies": {
+		"@semantic-release/changelog": "^7.0.0",
+		"@semantic-release/exec": "^7.1.0",
+		"@semantic-release/git": "^11.0.0",
+		"@semantic-release/github": "^12.0.9",
+		"semantic-release": "^25.0.8"
+	}
 }
