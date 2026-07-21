@@ -1,13 +1,32 @@
-# Dockertor
+<div align="center">
 
-## Description
+# 🐳 Dockertor
 
-Dockertor is a tool that help you inspect your docker containers.
-This is an expirimental project to learn how to use bun & Svelte.
+**A clean, real-time dashboard to inspect your Docker containers.**
 
-## What does it look like
+[![CI](https://github.com/rolljee/dockertor/actions/workflows/ci.yml/badge.svg)](https://github.com/rolljee/dockertor/actions/workflows/ci.yml)
+[![Release](https://github.com/rolljee/dockertor/actions/workflows/release.yml/badge.svg)](https://github.com/rolljee/dockertor/actions/workflows/release.yml)
+[![GitHub release](https://img.shields.io/github/v/release/rolljee/dockertor?include_prereleases&sort=semver)](https://github.com/rolljee/dockertor/releases)
 
-![Dockertor](./screenshots/example.png)
+</div>
+
+![Dockertor dashboard](./screenshots/example.png)
+
+## Overview
+
+Dockertor is a small web app that surfaces everything `docker ps` knows about
+your containers in a dashboard built for DevOps readability — status at a
+glance, searchable, auto-refreshing. It started as an experiment to learn
+Bun & Svelte, and now ships as versioned container images.
+
+## Features
+
+- 📊 **At-a-glance stats** — total, running, exited and paused counts.
+- 🎨 **Status-coloured cards** — each container's state is instantly readable.
+- 🔎 **Search & filter** — by name, image or ID, and by container state.
+- 📋 **Copyable IDs** and formatted ports, networks, mounts and labels.
+- 🔁 **Auto-refresh** every few seconds, with a manual refresh too.
+- 🌙 **Dark console theme** designed for long dashboards.
 
 ## Usage
 
@@ -19,6 +38,21 @@ Once started:
 
 - Web UI: http://localhost:5173
 - API: http://localhost:3000
+
+> The API reads the host Docker socket (`/var/run/docker.sock`) to run
+> `docker ps`, so it lists the containers of the host it runs on.
+
+## Local development
+
+```bash
+# API (Bun, hot reload) — http://localhost:3000
+cd api && bun install && bun run start
+
+# Web (SvelteKit dev server) — http://localhost:5173
+cd web && npm install && npm run dev
+```
+
+Type-check and build the web app with `npm run check` and `npm run build`.
 
 ## Tech stack
 
