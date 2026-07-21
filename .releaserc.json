@@ -1,0 +1,31 @@
+{
+  "branches": [
+    "main",
+    { "name": "develop", "prerelease": "beta" }
+  ],
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    [
+      "@semantic-release/changelog",
+      {
+        "changelogFile": "CHANGELOG.md"
+      }
+    ],
+    [
+      "@semantic-release/exec",
+      {
+        "verifyReleaseCmd": "printf 'published=true\\nversion=${nextRelease.version}\\nchannel=${nextRelease.channel}\\n' >> \"$GITHUB_OUTPUT\"",
+        "prepareCmd": "node scripts/set-version.mjs ${nextRelease.version}"
+      }
+    ],
+    [
+      "@semantic-release/git",
+      {
+        "assets": ["CHANGELOG.md", "package.json", "api/package.json", "web/package.json"],
+        "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+      }
+    ],
+    "@semantic-release/github"
+  ]
+}
