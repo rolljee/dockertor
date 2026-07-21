@@ -1,14 +1,16 @@
 {
-  "name": "dockertor",
-  "module": "index.ts",
-  "type": "module",
-  "scripts": {
-    "start": "bun --hot run index.ts"
-  },
-  "devDependencies": {
-    "bun-types": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  }
+	"name": "dockertor",
+	"module": "index.ts",
+	"type": "module",
+	"scripts": {
+		"start": "bun --hot run index.ts",
+		"typecheck": "tsc --noEmit"
+	},
+	"devDependencies": {
+		"@types/bun": "^1.3.14"
+	},
+	"peerDependencies": {
+		"typescript": "^7.0.2"
+	},
+	"version": "1.0.0-beta.1"
 }

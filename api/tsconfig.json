@@ -7,7 +7,6 @@
     "moduleDetection": "force",
     "allowImportingTsExtensions": true,
     "strict": true,
-    "downlevelIteration": true,
     "skipLibCheck": true,
     "jsx": "preserve",
     "allowSyntheticDefaultImports": true,
@@ -15,7 +14,7 @@
     "allowJs": true,
     "noEmit": true,
     "types": [
-      "bun-types" // add Bun global
+      "@types/bun" // add Bun global
     ]
   }
 }
