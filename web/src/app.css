@@ -1,3 +1,39 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@theme {
+	--font-mono:
+		'Fira Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas,
+		'Liberation Mono', monospace;
+
+	/* Surface & accent tokens tuned for a dark DevOps console */
+	--color-surface-0: oklch(0.17 0.015 260); /* app background */
+	--color-surface-1: oklch(0.21 0.017 260); /* cards */
+	--color-surface-2: oklch(0.26 0.02 260); /* raised / hover */
+	--color-border: oklch(0.32 0.02 260);
+	--color-accent: oklch(0.72 0.14 235);
+}
+
+html {
+	color-scheme: dark;
+	background-color: var(--color-surface-0);
+}
+
+body {
+	background-color: var(--color-surface-0);
+	color: oklch(0.93 0.01 260);
+	-webkit-font-smoothing: antialiased;
+}
+
+/* Discreet scrollbars that match the console theme */
+* {
+	scrollbar-width: thin;
+	scrollbar-color: var(--color-surface-2) transparent;
+}
+*::-webkit-scrollbar {
+	width: 10px;
+	height: 10px;
+}
+*::-webkit-scrollbar-thumb {
+	background-color: var(--color-surface-2);
+	border-radius: 9999px;
+}

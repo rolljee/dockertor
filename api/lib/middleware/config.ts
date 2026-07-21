@@ -1,32 +1,48 @@
 import { DockerService } from "../containers/docker";
 
+const CORS_HEADERS = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "GET, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type",
+};
+
 export class Middleware {
   url: URL;
+  method: string;
   dockerService: DockerService;
 
   constructor(req: Request) {
     this.url = new URL(req.url);
-
+    this.method = req.method;
     this.dockerService = new DockerService();
   }
 
-  async processUrl() {
-    if (this.url.pathname === "/") {
-      return new Response("Hello world!");
+  async processUrl(): Promise<Response> {
+    // CORS preflight
+    if (this.method === "OPTIONS") {
+      return new Response(null, { status: 204, headers: CORS_HEADERS });
+    }
+
+    if (this.url.pathname === "/" || this.url.pathname === "/health") {
+      return Response.json({ status: "ok" }, { headers: CORS_HEADERS });
     }
 
     if (this.url.pathname === "/api/containers") {
-      const containers = await this.dockerService.getContainersInformations();
-      const payload = JSON.stringify(containers);
-      const response = Response.json(payload, {
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-        },
-      });
-
-      return response;
+      try {
+        const containers = await this.dockerService.getContainersInformations();
+        return Response.json(containers, { headers: CORS_HEADERS });
+      } catch (error) {
+        const message = error instanceof Error ? error.message : String(error);
+        return Response.json(
+          { error: message },
+          { status: 502, headers: CORS_HEADERS },
+        );
+      }
     }
 
-    return new Response("Not found", { status: 404 });
+    return Response.json(
+      { error: "Not found" },
+      { status: 404, headers: CORS_HEADERS },
+    );
   }
 }
